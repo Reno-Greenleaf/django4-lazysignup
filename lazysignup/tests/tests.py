@@ -67,7 +67,8 @@ class LazyTestCase(TestCase):
 
     def setUp(self):
         self.request = HttpRequest()
-        SessionMiddleware().process_request(self.request)
+        get_response = mock.MagicMock()
+        SessionMiddleware(get_response).process_request(self.request)
 
         # We have to save the session to cause a session key to be generated.
         self.request.session.save()
@@ -432,9 +433,10 @@ class LazyTestCase(TestCase):
     def test_authenticated_user_class(self):
         # We should find that the class of request.user is that of
         # LAZSIGNUP_CUSTOM_USER
+        get_request = mock.MagicMock()
         request = HttpRequest()
         request.user = AnonymousUser()
-        SessionMiddleware().process_request(request)
+        SessionMiddleware(get_request).process_request(request)
         lazy_view(request)
         self.assertEqual(get_user_model(), type(request.user))
 

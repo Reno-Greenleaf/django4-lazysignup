@@ -5,6 +5,11 @@ from django.urls import reverse
 from django.http import HttpRequest
 from django.test import TestCase
 
+try:
+    from unittest import mock
+except ImportError:
+    import mock
+
 from lazysignup.utils import is_lazy_user
 
 
@@ -16,7 +21,8 @@ class CustomUserModelTests(TestCase):
     def setUp(self):
         super(CustomUserModelTests, self).setUp()
         self.request = HttpRequest()
-        SessionMiddleware().process_request(self.request)
+        get_request = mock.MagicMock
+        SessionMiddleware(get_request).process_request(self.request)
 
         # We have to save the session to cause a session key to be generated.
         self.request.session.save()

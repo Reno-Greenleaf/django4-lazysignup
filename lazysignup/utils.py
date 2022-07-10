@@ -14,3 +14,11 @@ def is_lazy_user(user):
     # Otherwise, we have to fall back to checking the database.
     from lazysignup.models import LazyUser
     return bool(LazyUser.objects.filter(user=user).count() > 0)
+
+
+def is_ajax(request):
+    """Whether a request is AJAX request.
+
+    Should work with jQuery requests.
+    """
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'

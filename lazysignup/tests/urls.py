@@ -22,24 +22,24 @@ admin.autodiscover()
 from django.contrib import admin
 
 urlpatterns = [
-    path(r'^admin/?', admin.site.urls),
-    path(r'^convert/', include('lazysignup.urls')),
-    path(r'^custom_convert/', views.convert, {
+    path(r'admin/', admin.site.urls),
+    path(r'convert/', include('lazysignup.urls')),
+    path(r'custom_convert/', views.convert, {
         'template_name': 'lazysignup/done.html'
     }),
-    path(r'^custom_convert_ajax/', views.convert, {
+    path(r'custom_convert_ajax/', views.convert, {
         'ajax_template_name': 'lazysignup/done.html'
     }),
 ]
 
 urlpatterns += [
-    path(r'^nolazy/$', test_views.view, name='test_view'),
-    path(r'^lazy/$', test_views.lazy_view, name='test_lazy_view'),
+    path(r'nolazy/', test_views.view, name='test_view'),
+    path(r'lazy/', test_views.lazy_view, name='test_lazy_view'),
 ]
 
 urlpatterns += [
-    path(r'^bad-custom-convert/$', views.convert, {
+    path(r'bad-custom-convert/', views.convert, {
         'form_class': UserCreationForm}, name='test_bad_convert'),
-    path(r'^good-custom-convert/$', views.convert, {
+    path(r'good-custom-convert/', views.convert, {
         'form_class': GoodUserCreationForm}, name='test_good_convert'),
 ]

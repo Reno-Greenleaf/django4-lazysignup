@@ -1,5 +1,3 @@
-.. image:: https://img.shields.io/badge/build-passing-brightgreen.svg
-
 Introduction
 ============
 
@@ -10,3 +8,6 @@ they can convert their temporary user account to a real user account.
 `Read the full documentation`_.
 
 .. _Read the full documentation: http://django-lazysignup.readthedocs.org/
+
+Note. All should work as described in the docs, except for the installation step.
+Instead of ``pip install django-lazysignup`` the command ``pip install git+https://github.com/Reno-Greenleaf/django4-lazysignup.git`` should be used.

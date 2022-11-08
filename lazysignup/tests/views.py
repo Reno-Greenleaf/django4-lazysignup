@@ -31,3 +31,13 @@ def requires_lazy_view(request):
 @require_nonlazy_user("view-for-lazy-users")
 def requires_nonlazy_view(request):
     return HttpResponse()
+
+
+def has_lazy_user(request):
+    """Check whether a lazy user is authenticated."""
+    response = HttpResponse()
+
+    if request.user.is_anonymous or request.user.has_usable_password():
+        response.status_code = 500
+
+    return response

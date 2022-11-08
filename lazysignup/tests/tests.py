@@ -31,7 +31,7 @@ from lazysignup.models import LazyUser
 from lazysignup.signals import converted
 from lazysignup.utils import is_lazy_user
 
-if settings.AUTH_USER_MODEL is 'auth.User':
+if settings.AUTH_USER_MODEL == 'auth.User':
     from lazysignup.tests.forms import GoodUserCreationForm
 else:
     from custom_user_tests.forms import GoodUserCreationForm
@@ -75,7 +75,7 @@ class LazyTestCase(TestCase):
 
     @mock.patch('django.urls.resolve')
     def test_session_already_exists(self, mock_resolve):
-        # If the user id is already in the session, this decorator should do
+        # If the user ID is already in the session, this decorator should do
         # nothing.
         f = allow_lazy_user(lambda request: 1)
         user = get_user_model().objects.create_user('test', 'test@test.com', 'test')

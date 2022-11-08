@@ -5,7 +5,7 @@ from lazysignup.models import LazyUser
 from lazysignup.constants import USER_AGENT_BLACKLIST
 
 
-class LazySignup:
+class AllowLazyUser:
     """Signs up a lazy user no matter the view."""
 
     def __init__(self, get_response):
